@@ -1,0 +1,16 @@
+<template>
+    <lightning-card  title="Parent Component">
+        <lightning-button label="Read Accounts" slot="actions" onclick={handleClickReadAccounts}></lightning-button>
+        <template if:true={accountRecords} for:each={accountRecords} for:item="account" for:index="index">
+            <c-test-child key={account.Id} account-id={account.Id}></c-test-child>
+        </template>
+        <p slot="footer">Parent Component Footer</p>
+    </lightning-card>
+
+    <template if:true={error}>
+        <h1>error</h1>
+        <p>{error}</p>
+        <h1>stack</h1>
+        <p>{stack}</p>
+    </template>
+</template>
