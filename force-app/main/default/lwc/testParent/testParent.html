@@ -1,8 +1,9 @@
 <template>
-    <lightning-card  title="Parent Component">
+    <lightning-card title={title}>
         <lightning-button label="Read Accounts" slot="actions" onclick={handleClickReadAccounts}></lightning-button>
+        <lightning-button label="Poke Childs" slot="actions" onclick={handleClickPokeChilds}></lightning-button>
         <template if:true={accountRecords} for:each={accountRecords} for:item="account" for:index="index">
-            <c-test-child key={account.Id} account-id={account.Id}></c-test-child>
+            <c-test-child onaneventfromchild={handleButtonEventFromChild} key={account.Id} account-id={account.Id}></c-test-child>
         </template>
         <p slot="footer">Parent Component Footer</p>
     </lightning-card>

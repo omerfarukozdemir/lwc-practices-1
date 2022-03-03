@@ -1,5 +1,7 @@
+/* eslint-disable no-alert */
 import { LightningElement, api, wire, track } from 'lwc';
-import readAccountsWire from '@salesforce/apex/testController.readAccounts';
+import readAccountsFromApex from '@salesforce/apex/testController.readAccounts';
+import countAccountsFromApex from '@salesforce/apex/testController.countAccounts';
 
 export default class TestParent extends LightningElement {
 
@@ -11,9 +13,24 @@ export default class TestParent extends LightningElement {
 
     @track
     accountRecords;
+    
+    @track
+    accountRecordCount = 0;
+
+    @track
+    title = '';
+
+    async init() {
+        try {
+            this.accountRecordCount = await countAccountsFromApex();
+            this.title = 'Total Account: ' + this.accountRecordCount;
+        } catch (error) {
+            this.error = error;
+        }
+    }
 
     handleClickReadAccounts() {
-        readAccountsWire()
+        readAccountsFromApex()
             .then(result => {
                 this.accountRecords = result;
             })
@@ -29,6 +46,7 @@ export default class TestParent extends LightningElement {
 
     connectedCallback() {
         console.log('parent connectedCallback');
+        this.init();
     }
 
     renderedCallback() {
@@ -45,6 +63,21 @@ export default class TestParent extends LightningElement {
 
         this.error = error;
         this.stack = stack;
+    }
+
+    handleButtonEventFromChild(event) {
+        alert('clicked on child record: ' + event.detail);
+    }
+
+    handleClickPokeChilds() {
+        /*let childComponent = this.template.querySelector('c-test-child[accountId="0017Q000003d23HQAQ"]');
+        if (childComponent)
+            childComponent.handleExternalCall();
+        */
+        this.template.querySelectorAll('c-test-child').forEach(element => {
+            if (element.accountId === '0017Q000003d23HQAQ')
+                element.handleExternalCall();
+        });
     }
 
 }

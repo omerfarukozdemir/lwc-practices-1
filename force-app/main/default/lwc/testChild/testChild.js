@@ -1,4 +1,5 @@
-import { api, LightningElement } from 'lwc';
+/* eslint-disable no-alert */
+import { api, LightningElement, track } from 'lwc';
 
 export default class TestChild extends LightningElement {
 
@@ -7,7 +8,8 @@ export default class TestChild extends LightningElement {
 
     constructor() {
         super();
-        console.log(`child constructor ${this.accountId}`);
+
+        console.log(`child constructor`);
     }
 
     connectedCallback() {
@@ -25,5 +27,17 @@ export default class TestChild extends LightningElement {
     errorCallback(error, stack) {
         console.log(`child error ${JSON.stringify(error)}`);
         console.log(`child stack ${JSON.stringify(stack)}`);
+    }
+
+    handleClickMe() {
+        const someEvent = CustomEvent('aneventfromchild', {
+            detail: this.accountId
+        });
+        this.dispatchEvent(someEvent);
+    }
+
+    @api
+    handleExternalCall() {
+        alert('someonecalledme: ' + this.accountId); 
     }
 }
