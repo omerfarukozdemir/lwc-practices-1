@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <lightning:messageChannel type="AuraChannel__c" aura:id="AuraChannel"/>
+    <lightning:messageChannel type="LWCChannel__c" aura:id="LWCChannel" onMessage="{!c.handleLWCMessage}"/>
+    <lightning:messageChannel type="VFChannel__c" aura:id="VFChannel" onMessage="{!c.handleVFMessage}"/>
+
+    <lightning:card footer="Aura Component LMS Footer" title="Aura Component LMS">
+        <aura:set attribute="actions">
+            <lightning:button label="Send Message from Aura" onclick="{!c.handleSendMessageClick}"/>
+        </aura:set>
+        <p class="slds-var-p-horizontal_small">
+            Aura Component LMS Body
+        </p>
+    </lightning:card>
+</aura:component>	

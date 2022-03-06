@@ -1,0 +1,25 @@
+<apex:page docType="html-5.0">
+    <apex:slds />
+    <script type="module">
+        import { setPageConfigs } from '{!URLFOR($Resource.vfmiddleman)}';
+
+        setPageConfigs({
+            messageChannelLWC: '{!$MessageChannel.LWCChannel__c}',
+            messageChannelAura: '{!$MessageChannel.AuraChannel__c}',
+            messageChannelVF: '{!$MessageChannel.VFChannel__c}',
+            vfPublish: sforce.one.publish,
+            lwcSubscribe: sforce.one.subscribe,
+            auraSubscribe: sforce.one.subscribe
+        });
+    </script>
+    <div class="slds-card">
+        <div class="slds-card__body slds-card__body_inner">
+            <button type="button">Send message from VFPage</button>
+        </div>
+
+        <footer class="slds-card__footer">
+            VFPage LMS Footer
+        </footer>
+    </div>
+
+</apex:page>
