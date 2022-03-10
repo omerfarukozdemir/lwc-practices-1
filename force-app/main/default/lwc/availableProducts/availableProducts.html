@@ -1,0 +1,83 @@
+<!--
+- Created by Omer on 18/02/2022.
+-->
+
+<!-- Available Products -->
+<template>
+    <div class="slds-is-relative">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" variant="brand" size="medium"></lightning-spinner>
+        </template>
+
+        <lightning-card title={cardLabel} icon-name="standard:product_item">
+
+            <template if:false={showProductListButton}>
+                <lightning-button label={showProductListButtonLabel} slot="actions" onclick={handleShowProductList}>
+                </lightning-button>
+            </template>
+
+            <template if:true={showProductListButton}>
+                <lightning-button label={hideProductListButtonLabel} slot="actions" onclick={handleHideProductList}>
+                </lightning-button>
+            </template>
+
+            <template if:true={showPriceBookSelectionLayout}>
+                <lightning-layout multiple-rows="true" class=slds-var-p-left_small>
+                    <lightning-layout-item size=12 small-device-size=9 medium-device-size=9 large-device-size=9>
+                        <lightning-combobox
+                                name="Price Book"
+                                label="Price Book"
+                                value={selectedPriceBookId}
+                                placeholder="Select Price Book"
+                                options={pricebookOptions}
+                                onchange={handlePriceBookChange}></lightning-combobox>
+                    </lightning-layout-item>
+                    <lightning-layout-item size=3 class="slds-var-p-left_small slds-var-p-top_large" small-device-size=3 medium-device-size=3 large-device-size=3>
+                        <lightning-button
+                                label="Save"
+                                icon-name="utility:save"
+                                icon-position="left"
+                                disabled={priceBookSaveButtonDisabled}
+                                onclick={handleSavePriceBookChange}>
+                        </lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+
+            <template if:true={showProductListButton}>
+                <template if:true={showProductListDataTable}>
+                    <lightning-layout multiple-rows="false">
+                        <lightning-layout-item size=12 small-device-size=12 medium-device-size=12 large-device-size=12 class=slds-var-p-around_small>
+                            <lightning-button
+                                    label={addProductButtonLabel}
+                                    disabled={addProductButtonDisabled}
+                                    onclick={handleAddProduct}
+                                    class={addProductButtonClass}
+                            >
+                            </lightning-button>
+                        </lightning-layout-item>
+                        <lightning-layout-item size=12 small-device-size=12 medium-device-size=12 large-device-size=12 class=slds-var-p-left_small>
+                            <div style="height: 250px;">
+                                <!-- sldsValidatorIgnoreNextLine -->
+                                <lightning-datatable
+                                        key-field="id"
+                                        data={productList}
+                                        columns={columns}
+                                        max-row-selection=2000
+                                        onloadmore={handleLoadMore}
+                                        enable-infinite-loading
+                                        show-row-number-column
+                                        hide-checkbox-column={hideCheckBoxColumn}
+                                        onrowselection={handleRowSelection}>
+                                </lightning-datatable>
+                            </div>
+                        </lightning-layout-item>
+                        <lightning-layout-item size=12 small-device-size=12 medium-device-size=12 large-device-size=12 class="slds-p-around_small slds-text-align_center">
+                            {loadMoreStatus}
+                        </lightning-layout-item>
+                    </lightning-layout>
+                </template>
+            </template>
+        </lightning-card>
+    </div>
+</template>
