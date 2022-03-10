@@ -1,0 +1,35 @@
+<!-- sldsValidatorIgnore -->
+<!--
+ - Created by Omer on 18/02/2022.
+ -->
+
+<!-- Order Product -->
+<template>
+    <div class="slds-is-relative">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" variant="brand" size="medium"></lightning-spinner>
+        </template>
+
+        <lightning-card title={cardLabel} icon-name="standard:order_item">
+            <lightning-button
+                    class={activateButtonClass}
+                    label={activateButtonLabel}
+                    onclick={handleActivate}
+                    slot="actions"
+                    disabled={activeButtonDisabled}>
+            </lightning-button>
+            <div class="slds-var-p-horizontal_small" style="height: 250px;">
+                <lightning-datatable
+                        key-field="id"
+                        data={orderItems}
+                        hide-checkbox-column
+                        show-row-number-column
+                        columns={columns}
+                        sorted-by={sortBy}
+                        sorted-direction={sortDirection}
+                        onsort={doSorting}>
+                </lightning-datatable>
+            </div>
+        </lightning-card>
+    </div>
+</template>
