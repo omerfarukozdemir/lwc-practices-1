@@ -1,9 +1,9 @@
 
 general:
 # Uncomment the following to specify only a specific branch
-   branches:
-     only:
-       - master # specific branch
+branches:
+  only:
+  - master # specific branch
 #       - /dev-.*/ # or regexes
 
 machine:
@@ -46,3 +46,6 @@ test:
 #    - sfdx force:source:convert -r force-app -d testDeploy
 #    - . cleanupDeploy.sh
 #    - sfdx force:mdapi:deploy -d testDeploy/ -u deploy -w 2
+
+jobs:
+  - test
