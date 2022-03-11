@@ -34,7 +34,8 @@
 		<name>CustomLabels</name>
 	</types>
 	<types>
-		<members>*</members>
+		<members>Country_Code.Canada</members>
+		<members>Order_Request.Method1</members>
 		<name>CustomMetadata</name>
 	</types>
 	<types>
