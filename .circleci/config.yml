@@ -54,9 +54,10 @@ jobs:
           command: |
             mkdir -p ~/junit
             sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
-      - uses: codecov/codecov-action@v2
-          with:
-            flags: Apex
+       - name: 'Upload code coverage for Apex to Codecov.io'
+              uses: codecov/codecov-action@v2.0.2
+              with:
+                  flags: Apex
       - run:
           name: Delete Useless Scratch Org
           command: |
