@@ -56,6 +56,10 @@ jobs:
             sfdx force:apex:test:run -c -d ~/junit -r junit --wait 5
       - store_test_results:
           path: ~/junit
+      - name: Upload code coverage for Apex to Codecov.io
+        uses: codecov/codecov-action@v1
+        with:
+          flags: Apex
       - run:
           name: Delete Useless Scratch Org
           command: |
