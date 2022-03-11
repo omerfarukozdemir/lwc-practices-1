@@ -57,8 +57,8 @@ jobs:
       - run: 
           name: Upload code coverage for Apex to Codecov.io
           uses: codecov/codecov-action@v1
-              with:
-                  flags: Apex
+          with:
+          flags: Apex
       - run:
           name: Delete Useless Scratch Org
           command: |
