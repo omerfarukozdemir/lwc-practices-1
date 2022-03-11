@@ -41,7 +41,7 @@ public with sharing class OrderService {
             }
             orderRequestModel.orderProducts = orderItemRequestModels;
 
-            Map<String, Order_Request__mdt> requestURLs = Order_Request__mdt.getAll();
+            Map<String, Order_Request__mdt> requestURLs = UtilityController.getAllOrderRequestMDT();
             Order_Request__mdt methodDetail = requestURLs.get('Method1');
 
             Http http = new Http();
