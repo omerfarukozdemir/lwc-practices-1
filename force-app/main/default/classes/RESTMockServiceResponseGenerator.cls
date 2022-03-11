@@ -13,7 +13,9 @@ public class RESTMockServiceResponseGenerator implements HttpCalloutMock {
     }
 
     public HttpResponse respond(HttpRequest req) {
-        Map<String, Order_Request__mdt> requestURLs = Order_Request__mdt.getAll();
+
+        
+        Map<String, Order_Request__mdt> requestURLs = UtilityController.getAllOrderRequestMDT();
         Order_Request__mdt methodDetail = requestURLs.get('Method1');
 
         HttpResponse response = new HttpResponse();
