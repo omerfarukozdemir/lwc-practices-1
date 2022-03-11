@@ -30,6 +30,34 @@
 		<name>AuraDefinitionBundle</name>
 	</types>
 	<types>
+		<members>Country_Code__mdt.Country_Code__c</members>
+		<members>Order_Request__mdt.HTTP_Method__c</members>
+		<members>Order_Request__mdt.ServiceURL__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>AvailableProductsAddProductButtonLabel</members>
+		<members>AvailableProductsCardLabel</members>
+		<members>AvailableProductsHideProductListButtonLabel</members>
+		<members>AvailableProductsListPriceColumnName</members>
+		<members>AvailableProductsProductNameColumnName</members>
+		<members>AvailableProductsShowProductListButtonLabel</members>
+		<members>OrderActivationIntegrationFailMessage</members>
+		<members>OrderActivationIntegrationSuccessMessage</members>
+		<members>OrderItemProductNameColumn</members>
+		<members>OrderItemQuantityColumnName</members>
+		<members>OrderItemTotalPriceColumnName</members>
+		<members>OrderItemUnitPriceColumnName</members>
+		<members>OrderProductsActivateButtonLabel</members>
+		<members>OrderProductsAddSuccess</members>
+		<members>OrderProductsCardLabel</members>
+		<members>OrderProductsSpinnerLoadingLabel</members>
+		<members>ShowToastEventFailMessageTitle</members>
+		<members>ShowToastEventSuccessMessageTitle</members>
+		<members>test</members>
+		<name>CustomLabel</name>
+	</types>
+	<types>
 		<members>*</members>
 		<name>CustomLabels</name>
 	</types>
