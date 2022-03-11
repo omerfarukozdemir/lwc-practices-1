@@ -56,14 +56,24 @@ jobs:
             sfdx force:apex:test:run -c -d ~/junit -r junit --wait 5
       - store_test_results:
           path: ~/junit
-      - name: Upload code coverage for Apex to Codecov.io
-        uses: codecov/codecov-action@v1
-        with:
-          flags: Apex
       - run:
           name: Delete Useless Scratch Org
           command: |
             sfdx force:org:delete -u circle_build_$CIRCLE_BUILD_NUM -p
+      # Run Apex tests in scratch org
+      - name: 'Run Apex tests'
+        run: sfdx force:apex:test:run -c -r human -d ./tests/apex -w 20
+
+      # Delete temporary test file that Codecov is unable to parse
+      - name: 'Delete coverage file (temporary step)'
+        run: rm ./tests/apex/test-result-707*-codecoverage.json
+
+      # Upload code coverage data
+      - name: 'Upload code coverage for Apex to Codecov.io'
+        uses: codecov/codecov-action@v2.0.2
+        with:
+            flags: Apex
+
 
 ### Uncomment the following if performing deployments
 #deployment:
