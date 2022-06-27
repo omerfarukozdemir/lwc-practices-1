@@ -1,0 +1,25 @@
+<!--
+- Created by Omer on 18/02/2022.
+-->
+
+<!-- Available Products -->
+<template>
+    <div class="slds-is-relative">
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading" variant="brand" size="medium"></lightning-spinner>
+        </template>
+
+        <lightning-card title='Accounts' icon-name="standard:account">
+            <lightning-button label='Refresh' slot="actions" onclick={handleLoadAccountList}></lightning-button>
+
+            <lightning-datatable
+                key-field="id"
+                data={accountList}
+                columns={columns}
+                hide-checkbox-column="true"
+                show-row-number-column>
+            </lightning-datatable>
+
+        </lightning-card>
+    </div>
+</template>
